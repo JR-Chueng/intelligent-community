@@ -4,3 +4,6 @@ babel.config.js
 vue.config.js
 .eslintrc.js
 stylelint.config.js
+commitlint.config.js
+/.husky/
+/.vscode/
