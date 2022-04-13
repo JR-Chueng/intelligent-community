@@ -110,6 +110,7 @@ export default {
 @import '~@/views/Example/index.scss';
 
 h3 {
+    display: block;
     margin: 40px 15px 0;
 }
 
