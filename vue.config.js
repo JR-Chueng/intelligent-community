@@ -2,10 +2,9 @@
  * @Author: zhangjiarun
  * @Date: 2022-04-11 15:58:49
  * @LastEditors: [you name]
- * @LastEditTime: 2022-04-13 17:23:47
- * @Description: 文件头的一些描述
+ * @LastEditTime: 2022-04-14 15:19:41
+ * @Description: vue.config.js
  */
-// vue.config.js
 const path =  require('path');
 
 const CompressionWebpackPlugin = require("compression-webpack-plugin"); // 开启gzip压缩， 按需引用
@@ -15,7 +14,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ? '/site/vue-demo/' : '/',  // 公共路径
+    publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',  // 公共路径
     indexPath: 'index.html' , // 相对于打包路径index.html的路径
     outputDir: process.env.outputDir || 'dist', // 'dist', 生产环境构建文件的目录
     assetsDir: 'static', // 相对于outputDir的静态资源(js、css、img、fonts)目录
