@@ -2,13 +2,17 @@
  * @Author: zhangjiarun
  * @Date: 2022-03-30 19:38:21
  * @LastEditors: [you name]
- * @LastEditTime: 2022-03-31 10:43:31
+ * @LastEditTime: 2022-04-15 17:16:40
  * @Description: 文件头的一些描述
  */
 module.exports = {
     'env': {
         'browser': true,
         'es2021': true
+    },
+    'globals': {
+        "process": true,  // 解决 全局没定义 process 导致的报错 
+        "require": true
     },
     'extends': [
         'eslint:recommended',

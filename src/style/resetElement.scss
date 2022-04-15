@@ -1,0 +1,57 @@
+/*
+ * @Author: zhangjr 
+ * @Date: 2021-06-17 15:47:23 
+ * @Descript : Element UI reset 
+ * @Last Modified by: zhangjr 
+ * @Last Modified time: 2021-11-18 11:31:55
+ */
+
+
+
+/* Button
+-------------------------- */
+
+/* Input 
+-------------------------- */
+
+/* Checkbox 
+-------------------------- */
+
+/* .el-select
+-------------------------- */
+
+/* DatePicker
+--------------------------*/
+
+
+/* Table
+-------------------------- */
+
+/* pager
+-------------------------- */
+
+/* Tree
+-------------------------- */
+
+
+/* dialog
+-------------------------- */
+
+/* transfer
+-------------------------- */
+
+/* popover
+-------------------------- */
+.el-popover .el-popconfirm__main {
+  margin: 14px 0;
+}
+.el-popover .el-button--text {
+  padding: 7px 15px;
+  border-color: #DCDFE6;
+  color: #606266;
+}
+.el-popover .el-button:focus, .el-button:hover {
+  color: #409EFF;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
+}
