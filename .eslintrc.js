@@ -2,7 +2,7 @@
  * @Author: zhangjiarun
  * @Date: 2022-03-30 19:38:21
  * @LastEditors: [you name]
- * @LastEditTime: 2022-04-15 17:16:40
+ * @LastEditTime: 2022-05-07 15:48:59
  * @Description: 文件头的一些描述
  */
 module.exports = {
@@ -92,6 +92,7 @@ module.exports = {
         'vue/html-comment-content-spacing': 2, // 在HTML注释中强制统一间距
         'vue/no-potential-component-option-typo': 1, // 不允许组件属性中存在潜在的键入错误
         'vue/padding-line-between-blocks': 2, // Require padding lines between blocks
+        'vue/multi-word-component-names': 0,  // 允许组件名用 非 复合词 例如，index.vue
 
         /**
          * Possible Errors、Best Practices、Variables

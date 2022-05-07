@@ -38,14 +38,18 @@ const mutations = {
      */
     // 添加图层信息项
     addLayerInfoItem(state, layerInfoItem) {
-        const index = state.layerInfoPanel.data.findIndex(item => item.id === layerInfoItem.id)
+        const index = state.layerInfoPanel.data.findIndex(
+            item => item.id === layerInfoItem.id
+        )
         if (index === -1) {
             state.layerInfoPanel.data.push(layerInfoItem)
         }
     },
     // 移除图层信息项
     removeLayerInfoItem(state, id) {
-        const index = state.layerInfoPanel.data.findIndex(item => item.id === id)
+        const index = state.layerInfoPanel.data.findIndex(
+            item => item.id === id
+        )
         if (index !== -1) {
             state.layerInfoPanel.data.splice(index, 1)
         }
@@ -64,14 +68,18 @@ const mutations = {
      */
     // 添加详情信息项
     addDetailInfoItem(state, detailInfoItem) {
-        const index = state.detailInfoPanel.data.findIndex(item => item.id === detailInfoItem.id)
+        const index = state.detailInfoPanel.data.findIndex(
+            item => item.id === detailInfoItem.id
+        )
         if (index === -1) {
             state.detailInfoPanel.data.push(detailInfoItem)
         }
     },
     // 移除详情信息项
     removeDetailInfoItem(state, id) {
-        const index = state.detailInfoPanel.data.findIndex(item => item.id === id)
+        const index = state.detailInfoPanel.data.findIndex(
+            item => item.id === id
+        )
         if (index !== -1) {
             state.detailInfoPanel.data.splice(index, 1)
         }
@@ -90,14 +98,13 @@ const mutations = {
     },
     // 设置详情信息面板的可见性
     setDetailInfoVisible(state, visible) {
-
         state.detailInfoPanel.visible = visible
     },
     setDetailPanelOffsetZ(state, offsetZ) {
         state.detailInfoPanel.offsetZ = offsetZ
     }
 }
-
+const getters = {}
 const actions = {
     // 移除图层信息项，并设置当前激活的图层信息项
     removeLayerInfoItem({ commit, state }, id) {
@@ -105,8 +112,12 @@ const actions = {
         commit('removeLayerInfoItem', id)
         // 移除后设置当前激活的图层信息项
         if (state.layerInfoPanel.activeId === id) {
-            const index = state.layerInfoPanel.data.findIndex(item => item.id === id)
-            const nextTab = state.layerInfoPanel.data[index + 1] || state.layerInfoPanel.data[index - 1]
+            const index = state.layerInfoPanel.data.findIndex(
+                item => item.id === id
+            )
+            const nextTab =
+                state.layerInfoPanel.data[index + 1] ||
+                state.layerInfoPanel.data[index - 1]
             if (nextTab) {
                 commit('setActiveLayerInfoItem', nextTab.id)
             }
@@ -123,6 +134,7 @@ const actions = {
 export default {
     namespaced: true,
     state,
+    getters,
     actions,
     mutations
 }

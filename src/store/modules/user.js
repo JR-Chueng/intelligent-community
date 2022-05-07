@@ -4,7 +4,9 @@
 //     let userInfo = {}
 //     try {
 //         userInfo = JSON.parse(storage.session.get('userInfo'))
-//     } catch (err) { err }
+//     } catch (err) {
+//         err
+//     }
 //     return userInfo
 // }
 // const state = {
@@ -36,7 +38,9 @@
 //             // login(data).then(res => {
 //             // getToken(data).then(result => {
 //             // if (result.success) {
-//             const userData = JSON.parse(JSON.stringify(ythData.opusLoginUser.user)) 
+//             const userData = JSON.parse(
+//                 JSON.stringify(ythData.opusLoginUser.user)
+//             )
 //             userData.token = ythData.access_token
 //             userData.account = ythData.opusLoginUser.user.userName
 //             userData.userId = ythData.opusLoginUser.user.userId
@@ -97,11 +101,14 @@
 //         state.token = token
 //     }
 // }
-
-// export default {
-//     namespaced: true,
-//     state,
-//     actions,
-//     getters,
-//     mutations
-// }
+const state = {}
+const actions = {}
+const getters = {}
+const mutations = {}
+export default {
+    namespaced: true,
+    state,
+    actions,
+    getters,
+    mutations
+}
