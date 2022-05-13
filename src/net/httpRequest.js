@@ -3,7 +3,7 @@
  * @Author: gy
  * @Date: 2022-04-28 15:27:59
  * @LastEditors: [you name]
- * @LastEditTime: 2022-05-07 17:06:50
+ * @LastEditTime: 2022-05-13 13:40:59
  */
 // 引入instance请求拦截配置实例
 import instance from './http'
@@ -15,6 +15,16 @@ const getByParams = function(url, params) {
         params: params
     })
 }
+
+// // axios.get
+// const getByParamsAndRequestForm = function(url, params) {
+//     return instance.get(url, {
+//         params: params,
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         }
+//     })
+// }
 
 // axios.get (arraybuffer文件流装换)
 const getByParamsAndResponseType = function(url, params) {
@@ -78,6 +88,7 @@ const deleteByJson = function(url, params) {
 export {
     getByParamsAndResponseType,
     getByParams,
+    // getByParamsAndRequestForm,
     postByParams,
     postByJson,
     postByFormData,

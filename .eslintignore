@@ -7,3 +7,4 @@ stylelint.config.js
 commitlint.config.js
 /.husky/
 /.vscode/
+/src/views/login/sm3

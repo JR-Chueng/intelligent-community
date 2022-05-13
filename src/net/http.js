@@ -3,12 +3,13 @@
  * @Author: gy
  * @Date: 2022-04-28 15:22:25
  * @LastEditors: [you name]
- * @LastEditTime: 2022-05-07 17:39:19
+ * @LastEditTime: 2022-05-13 15:02:02
  */
 import axios from 'axios' // axios
-import store from '@/store/index' // vuex
+// import store from '@/store/index' // vuex
 import { MessageBox, Message } from 'element-ui' // element
-import { loginOut } from './api/login'
+import { loginOut } from '@/net/api/login/login'
+import storage from '@/utils/storage'
 // 创建instance实例
 const instance = axios.create()
 
@@ -19,8 +20,7 @@ instance.defaults.timeout = 1000 * 60
 instance.defaults.headers.post['Content-Type'] =
     'application/x-www-form-urlencoded;charset="ISO-8859-1"'
 instance.defaults.headers.post['Accept'] = 'application/json; charset=utf-8'
-instance.defaults.headers.common['Authorization'] =
-    localStorage.getItem('token')
+instance.defaults.headers.common['Authorization'] = storage.session.get('token')
 
 // 请求拦截器
 instance.interceptors.request.use(
@@ -32,7 +32,7 @@ instance.interceptors.request.use(
         // 而后我们可以在响应拦截器中，根据状态码进行一些统一的操作。
 
         // const token = localStorage.getItem('token');
-        const token = store.state.user.token
+        const token = storage.session.get('token')
         token && (config.headers.Authorization = token)
         return config
     },
@@ -40,28 +40,28 @@ instance.interceptors.request.use(
 )
 // 请求失败后的错误统一处理 status, other
 const errorHandle = status => {
-    const isFirstFail = sessionStorage.getItem('isFirstFail') == null
+    // const isFirstFail = sessionStorage.getItem('isFirstFail') === null
     switch (status) {
         // 401: 未登录状态，跳转登录页
         // 403: token过期，清除token并跳转登录页
         case 401:
         case 403:
             // 防止重复提示
-            if (isFirstFail) {
-                sessionStorage.setItem('isFirstFail', 'Y')
-                MessageBox({
-                    type: 'warning',
-                    title: '提示',
-                    message: '登录已过期,请重新登录!',
-                    confirmButtonText: '确定',
-                    closeOnClickModal: false,
-                    closeOnPressEscape: false,
-                    showClose: false,
-                    callback: () => {
-                        loginOut()
-                    }
-                })
-            }
+            // if (isFirstFail) {
+            //     sessionStorage.setItem('isFirstFail', 'Y')
+            // }
+            MessageBox({
+                type: 'warning',
+                title: '提示',
+                message: '登录已过期,请重新登录!',
+                confirmButtonText: '确定',
+                closeOnClickModal: false,
+                closeOnPressEscape: false,
+                showClose: false,
+                callback: () => {
+                    loginOut()
+                }
+            })
             break
         // 404：请求不存在
         case 404:
@@ -74,18 +74,32 @@ const errorHandle = status => {
         default:
             Message({
                 type: 'error',
-                message: '接口异常，请联系管理员。'
+                message: '接口异常，请联系管理员'
             })
     }
 }
 
 // 响应拦截器
 instance.interceptors.response.use(
-    res => res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res),
+    res => {
+        if (res.status !== 200) {
+            return Promise.reject(res)
+        } else {
+            // 统一提示出200，但是接口错误的提示
+            if (!res.data.success) {
+                Message({
+                    type: 'error',
+                    message: res.data.message
+                })
+            }
+            return Promise.resolve(res.data)
+        }
+        // return res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res)},
+    },
     error => {
         const { response } = error
         if (response) {
-            // 请求已发出，但是不在2xx的范围
+            // 请求已发出，但是不在2xx的范围以及 即使200，但是success == false
             errorHandle(response.status, response.data.message)
             return Promise.reject(response)
         } else {
@@ -98,6 +112,7 @@ instance.interceptors.response.use(
             } else {
                 return Promise.reject(error)
             }
+            // return Promise.reject(error)
         }
     }
 )

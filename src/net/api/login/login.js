@@ -2,29 +2,26 @@
  * @Author: zhangjiarun
  * @Date: 2022-05-07 17:16:19
  * @LastEditors: [you name]
- * @LastEditTime: 2022-05-07 17:25:51
+ * @LastEditTime: 2022-05-13 11:20:56
  * @Description: 文件头的一些描述
  */
-import router from '../router'
-import instance from './http'
+import router from '@/router'
+import instance from '@/net/http'
 import qs from 'qs'
 import store from '@/store/index' // vuex
 import { Message } from 'element-ui' // element
+// import axios from 'axios' // axios
 
 export async function toLogin(param) {
-    const defualtParam = {
-        deviceType: 'normal',
-        isApp: 'true',
-        orgId: 'A'
-    }
-    const p = Object.assign({}, defualtParam, param)
     const url = '/opus-front-sso/authentication/form'
-    const result = await instance.post(url, qs.stringify(p), {
+    const auth = window.btoa('smart-community:smart-community@2022')
+    const result = await instance.post(url, qs.stringify(param), {
         headers: {
-            Authorization: 'Basic b3B1cy1yZXN0Om9wdXMtcmVzdDEyMw==',
+            Authorization: 'Basic ' + auth,
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
+
     return result
 }
 

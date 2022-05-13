@@ -2,7 +2,7 @@
  * @Author: zhangjiarun
  * @Date: 2022-04-14 16:51:21
  * @LastEditors: [you name]
- * @LastEditTime: 2022-05-07 15:43:16
+ * @LastEditTime: 2022-05-12 16:25:21
  * @Description: 文件头的一些描述
  */
 import Vue from 'vue'
@@ -24,8 +24,8 @@ const pages = [
 
 const routes = [
     {
-        path: '/',
-        name: 'home',
+        path: '/home',
+        // name: 'home',
         component: () => import('../views/layout/index.vue'),
         children: [
             {
@@ -37,17 +37,17 @@ const routes = [
     },
     // 登录
     {
-        path: '/login',
+        path: '/',
         name: 'login',
         component: () => import('../views/login/index.vue')
     },
     {
-        path: '/about',
-        name: 'about',
+        path: '/entry',
+        name: 'entry',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/entry.vue')
     }
 ]
 

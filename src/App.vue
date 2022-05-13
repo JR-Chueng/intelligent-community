@@ -2,7 +2,7 @@
  * @Author: zhangjiarun
  * @Date: 2022-03-30 18:28:32
  * @LastEditors: [you name]
- * @LastEditTime: 2022-05-07 16:24:14
+ * @LastEditTime: 2022-05-11 10:27:36
  * @Description: 文件头的一些描述
 -->
 <template>
@@ -12,24 +12,15 @@
 </template>
 
 <style lang="scss">
+@import '~@/style/reset.css';
+@import '~@/style/base.css';
+
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
-
-nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
 }
 </style>
